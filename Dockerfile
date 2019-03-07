@@ -15,5 +15,5 @@ RUN wget https://github.com/wata727/tflint/releases/download/v0.7.4/tflint_linux
 
 RUN gem install \
       awspec \
-      kitchen-awspec \
+      kitchen-verifier-awspec \
       kitchen-terraform

@@ -4,6 +4,10 @@ FROM chef/chefdk:latest
 RUN apt-get update \
  && apt-get install -y \
       docker.io \
+      git \
+      git-crypt \
+      gpg \
+      gpg-agent \
       python-pip \
       unzip \
  && rm -rf /var/lib/apt/lists/*
@@ -18,6 +22,8 @@ RUN gem install \
       awspec \
       kitchen-verifier-awspec \
       kitchen-terraform
+
+# Install other binaries
 
 ARG AWSCLI_VERSION=1.11.5
 RUN wget https://amazon-eks.s3-us-west-2.amazonaws.com/${AWSCLI_VERSION}/2018-12-06/bin/linux/amd64/aws-iam-authenticator \

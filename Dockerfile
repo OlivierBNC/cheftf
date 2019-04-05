@@ -25,28 +25,29 @@ RUN gem install \
 
 # Install other binaries
 
-ARG AWSCLI_VERSION=1.11.5
-RUN wget https://amazon-eks.s3-us-west-2.amazonaws.com/${AWSCLI_VERSION}/2018-12-06/bin/linux/amd64/aws-iam-authenticator \
+ARG AWS_IAM_AUTHENTICATOR_VERSION=1.12.7/2019-03-27
+RUN wget -q "https://amazon-eks.s3-us-west-2.amazonaws.com/${AWS_IAM_AUTHENTICATOR_VERSION}/bin/linux/amd64/aws-iam-authenticator" \
  && chmod +x aws-iam-authenticator \
  && mv aws-iam-authenticator /usr/local/bin/
 
-ARG HELM_VERSION=2.13.0
-RUN wget "https://storage.googleapis.com/kubernetes-helm/helm-v${HELM_VERSION}-linux-amd64.tar.gz" \
+ARG HELM_VERSION=2.13.1
+RUN wget -q "https://storage.googleapis.com/kubernetes-helm/helm-v${HELM_VERSION}-linux-amd64.tar.gz" \
  && tar -xzf "helm-v${HELM_VERSION}-linux-amd64.tar.gz" \
  && mv linux-amd64/helm /usr/local/bin/ \
- && rm -rf "helm-v${HELM_VERSION}-linux-amd64.tar.gz" linux-amd64
+ && rm -rf "helm-v${HELM_VERSION}-linux-amd64.tar.gz" linux-amd64 \
+ && helm init -c
 
-ARG KUBECTL_VERSION=1.13.4
-RUN wget "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" \
+ARG KUBECTL_VERSION=1.14.0
+RUN wget -q "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" \
  && chmod +x kubectl \
  && mv kubectl /usr/local/bin/
 
-ARG TERRAFORM_VERSION=0.11.11
-RUN wget "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" \
+ARG TERRAFORM_VERSION=0.11.13
+RUN wget -q "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" \
  && unzip "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" -d /usr/local/bin/ \
- && rm "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+ && rm -f "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
 
-ARG TFLINT_VERSION=0.7.4
-RUN wget "https://github.com/wata727/tflint/releases/download/v${TFLINT_VERSION}/tflint_linux_amd64.zip" \
+ARG TFLINT_VERSION=0.7.5
+RUN wget -q "https://github.com/wata727/tflint/releases/download/v${TFLINT_VERSION}/tflint_linux_amd64.zip" \
  && unzip tflint_linux_amd64.zip -d /usr/local/bin/ \
- && rm tflint_linux_amd64.zip
+ && rm -f tflint_linux_amd64.zip

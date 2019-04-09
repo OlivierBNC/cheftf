@@ -51,3 +51,8 @@ ARG TFLINT_VERSION=0.7.5
 RUN wget -q "https://github.com/wata727/tflint/releases/download/v${TFLINT_VERSION}/tflint_linux_amd64.zip" \
  && unzip tflint_linux_amd64.zip -d /usr/local/bin/ \
  && rm -f tflint_linux_amd64.zip
+
+ARG GOMPLATE_VERSION=3.3.1
+RUN wget -q "https://github.com/hairyhenderson/gomplate/releases/download/v${GOMPLATE_VERSION}/gomplate_linux-amd64" \
+ && chmod +x gomplate_linux-amd64 \
+ && mv gomplate_linux-amd64 /usr/local/bin/gomplate

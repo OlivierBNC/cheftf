@@ -8,6 +8,7 @@ RUN apt-get update \
       git-crypt \
       gpg \
       gpg-agent \
+      jq \
       python-pip \
       unzip \
  && rm -rf /var/lib/apt/lists/*

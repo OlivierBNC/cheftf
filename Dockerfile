@@ -48,10 +48,22 @@ RUN wget -q "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terra
  && unzip "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" -d /usr/local/bin/ \
  && rm -f "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
 
+ARG TERRAFORM_CIRCLECI_VERSION=0.1.0
+RUN wget -q "https://github.com/edahlseng/terraform-provider-circleci/releases/download/v${TERRAFORM_CIRCLECI_VERSION}/terraform-provider-circleci_v${TERRAFORM_CIRCLECI_VERSION}_linux_amd64.zip" \
+ && unzip "terraform-provider-circleci_v${TERRAFORM_CIRCLECI_VERSION}_linux_amd64.zip" -d /usr/local/bin/ \
+ && mv "/usr/local/bin/terraform-provider-circleci_v${TERRAFORM_CIRCLECI_VERSION}_linux_amd64" "terraform-provider-circleci" \
+ && rm -f "terraform-provider-circleci_v${TERRAFORM_CIRCLECI_VERSION}_linux_amd64.zip"
+
 ARG TFLINT_VERSION=0.7.5
 RUN wget -q "https://github.com/wata727/tflint/releases/download/v${TFLINT_VERSION}/tflint_linux_amd64.zip" \
  && unzip tflint_linux_amd64.zip -d /usr/local/bin/ \
  && rm -f tflint_linux_amd64.zip
+
+ARG YAML2JSON_VERSION=1.3
+RUN wget -q "https://github.com/bronze1man/yaml2json/releases/download/v${YAML2JSON_VERSION}/yaml2json_linux_amd64" \
+ && mv yaml2json_linux_amd64 yaml2json \
+ && chmod +x yaml2json \
+ && mv yaml2json /usr/local/bin/
 
 ARG GOMPLATE_VERSION=3.3.1
 RUN wget -q "https://github.com/hairyhenderson/gomplate/releases/download/v${GOMPLATE_VERSION}/gomplate_linux-amd64" \

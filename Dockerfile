@@ -61,8 +61,8 @@ RUN wget -q "https://github.com/wata727/tflint/releases/download/v${TFLINT_VERSI
 
 ARG YAML2JSON_VERSION=0.3.2
 RUN wget -q "https://github.com/wakeful/yaml2json/releases/download/${YAML2JSON_VERSION}/yaml2json-linux-amd64" \
- && chmod +x yaml2json_linux_amd64 \
- && mv yaml2json_linux_amd64 /usr/local/bin/yaml2json
+ && chmod +x yaml2json-linux-amd64 \
+ && mv yaml2json-linux-amd64 /usr/local/bin/yaml2json
 
 ARG GOMPLATE_VERSION=3.3.1
 RUN wget -q "https://github.com/hairyhenderson/gomplate/releases/download/v${GOMPLATE_VERSION}/gomplate_linux-amd64" \
